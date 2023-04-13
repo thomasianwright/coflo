@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5BA0E891-3040-4626-A201-497300E43D57}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{F514E571-76C3-477F-86F0-3C8CCF512015}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{C46B2D26-B277-4EE0-9497-0473D52EE7A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coflo.Abstractions", "source\core\Coflo.Abstractions\Coflo.Abstractions.csproj", "{28DE14D7-4F2E-40D9-B847-69866240023D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C46B2D26-B277-4EE0-9497-0473D52EE7A9} = {F514E571-76C3-477F-86F0-3C8CCF512015}
+		{28DE14D7-4F2E-40D9-B847-69866240023D} = {C46B2D26-B277-4EE0-9497-0473D52EE7A9}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28DE14D7-4F2E-40D9-B847-69866240023D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28DE14D7-4F2E-40D9-B847-69866240023D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28DE14D7-4F2E-40D9-B847-69866240023D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28DE14D7-4F2E-40D9-B847-69866240023D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
