@@ -1,7 +1,7 @@
 # Coflo
 
 ![GitHub](https://img.shields.io/github/license/thomasianwright/coflo?style=for-the-badge)
-![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/thomasianwright/coflo/build.yml?branch=main&label=Build%20Status&style=for-the-badge)
+![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/thomasianwright/coflo/dotnet.yml?branch=main&label=Build%20Status&style=for-the-badge)
 ![Discord](https://img.shields.io/discord/1096095159860600832?label=Discord&logo=Discord&style=for-the-badge)
 
 Coflo is an in development, distrobuted workflow engine.
