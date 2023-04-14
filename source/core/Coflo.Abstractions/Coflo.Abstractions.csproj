@@ -6,4 +6,14 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="NodaTime" Version="3.1.9" />
+      <PackageReference Include="NodaTime.Serialization.JsonNet" Version="3.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Models\Activity" />
+      <Folder Include="Models\Step" />
+    </ItemGroup>
+
 </Project>
