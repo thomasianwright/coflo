@@ -44,6 +44,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{FA4C5E4B-B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coflo.SDK.Tests", "tests\core\Coflo.SDK.Tests\Coflo.SDK.Tests.csproj", "{7FE22FFD-CB25-446A-9192-76127270C3E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coflo.Hosting.Orchestrator", "source\hosting\Coflo.Hosting.Orchestrator\Coflo.Hosting.Orchestrator.csproj", "{3009ACF8-F2DC-492C-8E41-7E36AB3A7A6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coflo.Core.Snowflake", "source\hosting\Coflo.Core.Snowflake\Coflo.Core.Snowflake.csproj", "{2FF4D33E-2964-41B3-B0B2-3C9D70616FBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coflo.Core.Snowflake.Tests", "tests\core\Coflo.Core.Snowflake.Tests\Coflo.Core.Snowflake.Tests.csproj", "{75110834-EBD6-450A-9092-B619CE02FEAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +72,9 @@ Global
 		{2569CD34-41EF-42A3-AE63-BE01A0124D44} = {C46B2D26-B277-4EE0-9497-0473D52EE7A9}
 		{FA4C5E4B-B42D-4BC5-9F26-FD32CD88F75F} = {1230DC9F-E226-4466-B0B1-99B52B66232C}
 		{7FE22FFD-CB25-446A-9192-76127270C3E1} = {FA4C5E4B-B42D-4BC5-9F26-FD32CD88F75F}
+		{3009ACF8-F2DC-492C-8E41-7E36AB3A7A6C} = {DEAF9660-31F2-4E6B-9A77-93BA08D7D122}
+		{2FF4D33E-2964-41B3-B0B2-3C9D70616FBA} = {C46B2D26-B277-4EE0-9497-0473D52EE7A9}
+		{75110834-EBD6-450A-9092-B619CE02FEAC} = {FA4C5E4B-B42D-4BC5-9F26-FD32CD88F75F}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{28DE14D7-4F2E-40D9-B847-69866240023D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -104,5 +113,17 @@ Global
 		{7FE22FFD-CB25-446A-9192-76127270C3E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FE22FFD-CB25-446A-9192-76127270C3E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FE22FFD-CB25-446A-9192-76127270C3E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3009ACF8-F2DC-492C-8E41-7E36AB3A7A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3009ACF8-F2DC-492C-8E41-7E36AB3A7A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3009ACF8-F2DC-492C-8E41-7E36AB3A7A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3009ACF8-F2DC-492C-8E41-7E36AB3A7A6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FF4D33E-2964-41B3-B0B2-3C9D70616FBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FF4D33E-2964-41B3-B0B2-3C9D70616FBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FF4D33E-2964-41B3-B0B2-3C9D70616FBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FF4D33E-2964-41B3-B0B2-3C9D70616FBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75110834-EBD6-450A-9092-B619CE02FEAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75110834-EBD6-450A-9092-B619CE02FEAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75110834-EBD6-450A-9092-B619CE02FEAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75110834-EBD6-450A-9092-B619CE02FEAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
