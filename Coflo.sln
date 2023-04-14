@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coflo.Hosting.Api.Rest", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coflo.Hosting.Api.GRPC", "source\hosting\Coflo.Hosting.Api.GRPC\Coflo.Hosting.Api.GRPC.csproj", "{47131B79-A7E2-4A46-B9E8-98DDC0C20FCE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coflo.SDK", "source\core\Coflo.SDK\Coflo.SDK.csproj", "{2569CD34-41EF-42A3-AE63-BE01A0124D44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,7 @@ Global
 		{60FE92B2-095B-46C3-8FEC-8C2350E92884} = {DEAF9660-31F2-4E6B-9A77-93BA08D7D122}
 		{AE88171D-FB16-4686-B23E-1C5F75DF7DC2} = {DEAF9660-31F2-4E6B-9A77-93BA08D7D122}
 		{47131B79-A7E2-4A46-B9E8-98DDC0C20FCE} = {DEAF9660-31F2-4E6B-9A77-93BA08D7D122}
+		{2569CD34-41EF-42A3-AE63-BE01A0124D44} = {C46B2D26-B277-4EE0-9497-0473D52EE7A9}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{28DE14D7-4F2E-40D9-B847-69866240023D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -85,5 +88,9 @@ Global
 		{47131B79-A7E2-4A46-B9E8-98DDC0C20FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47131B79-A7E2-4A46-B9E8-98DDC0C20FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47131B79-A7E2-4A46-B9E8-98DDC0C20FCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2569CD34-41EF-42A3-AE63-BE01A0124D44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2569CD34-41EF-42A3-AE63-BE01A0124D44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2569CD34-41EF-42A3-AE63-BE01A0124D44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2569CD34-41EF-42A3-AE63-BE01A0124D44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
