@@ -6,4 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\hosting\Coflo.Core.Snowflake\Coflo.Core.Snowflake.csproj" />
+      <ProjectReference Include="..\Coflo.Abstractions\Coflo.Abstractions.csproj" />
+    </ItemGroup>
+
 </Project>
