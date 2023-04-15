@@ -1,84 +1,90 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.Data;
+using Coflo.Core.Snowflake.Models;
+using Microsoft.Extensions.Configuration;
 using NodaTime;
 
 namespace Coflo.Core.Snowflake.Generators;
 
 public class IdGenerator : IIdGenerator
 {
-    private const int _nodeIdBits = 10;
-    private const int _sequenceBits = 12;
-    internal const int _epochBits = 41;
-    internal const int _unusedBits = 1;
-    
-    private readonly int _maxMachineId = (int)(Math.Pow(2, _nodeIdBits) - 1);
-    private readonly int _maxSequence = (int)(Math.Pow(2, _sequenceBits) - 1);
-    
-    private const long _epoch = 1675209600L;
-    
-    private readonly int _machineId;
     private readonly IClock _clock;
-    
-    private long _lastTimeStamp = -1L;
+    private readonly long _machineId;
+
+    private const long TimestampBits = 41;
+    private const long SequenceBits = 8;
+    private const long MachineIdBits = 63 - TimestampBits - SequenceBits;
+    private const long Epoch = 1_638_400_000_000L;
+    private long _lastTimestamp = -1L;
     private long _sequence = 0L;
-    
+
     private readonly Mutex _mutex;
     
-    public IdGenerator(IConfiguration configuration, IClock clock)
+    public IdGenerator(IClock clock, IConfiguration configuration)
     {
-        var machineId = configuration.GetValue<int>("MachineId");
-        
-        if(machineId < 0 || machineId > _maxMachineId) 
-        {
-            throw new ArgumentException($"Node ID must be between 0 and {_maxMachineId}");
-        }
-
-        _mutex = new Mutex();
-        _machineId = machineId;
         _clock = clock;
-    }
-
-    internal long GetTimestamp()
-    {
-        var now = _clock.GetCurrentInstant();
-        var epoch = Instant.FromUnixTimeSeconds(_epoch);
-        var duration = now.ToUnixTimeMilliseconds()- epoch.ToUnixTimeMilliseconds();
+        _machineId = configuration.GetValue<long>("MachineId");
         
-        return duration;
+        _mutex = new Mutex();
     }
-
-    public async Task<long> NextId()
+    
+    public Task<long> NextId()
     {
+        var timestamp = GetTimestamp();
+        
         _mutex.WaitOne();
         
-        var currentTimeStamp = GetTimestamp();
-
-        if (currentTimeStamp < _lastTimeStamp && _sequence >= 1) throw new SystemException("System Clock Invalid");
-
-        if (currentTimeStamp == _lastTimeStamp)
+        if (timestamp == _lastTimestamp)
         {
-            _sequence = _sequence++ & _maxSequence;
-
+            _sequence = (_sequence + 1) & ((1 << (int) SequenceBits) - 1);
+            
             if (_sequence == 0)
             {
-                await Task.Delay(1);
-
-                currentTimeStamp = GetTimestamp();
+                timestamp = GetNextTimestamp();
             }
         }
         else
         {
             _sequence = 0;
         }
-
-        _lastTimeStamp = currentTimeStamp;
-
-        var id =
-            (currentTimeStamp << _epochBits) |
-            (uint)(_machineId << _nodeIdBits) | (_sequence << _sequenceBits)
-            | 1 << _unusedBits;
+        
+        _lastTimestamp = timestamp;
         
         _mutex.ReleaseMutex();
         
+        return Task.FromResult(EncodeId(_clock.GetCurrentInstant(), _machineId, _sequence));
+    }
+    
+    private long GetTimestamp()
+    {
+        return _clock.GetCurrentInstant().ToUnixTimeMilliseconds() - Epoch;
+    }
+    
+    private long GetNextTimestamp()
+    {
+        var timestamp = GetTimestamp();
+        
+        while (timestamp <= _lastTimestamp)
+        {
+            timestamp = GetTimestamp();
+        }
+
+        return timestamp;
+    }
+    
+    internal static long EncodeId(Instant timestamp, long machineId, long sequence)
+    {
+        var timestampDelta = timestamp.ToUnixTimeMilliseconds() - Epoch;
+        var id = (timestampDelta << (int) (SequenceBits + MachineIdBits)) | (machineId << (int) SequenceBits) | sequence;
+        
         return id;
+    }
+    
+    public static SnowflakeId DecodeId(long id)
+    {
+        var sequence = id & ((1 << (int) SequenceBits) - 1);
+        var machineId = (id >> (int) SequenceBits) & ((1 << (int) MachineIdBits) - 1);
+        var timestamp = (id >> (int) (SequenceBits + MachineIdBits)) + Epoch;
+
+        return SnowflakeId.Create(id, Instant.FromUnixTimeMilliseconds(timestamp), machineId, sequence);
     }
 }
