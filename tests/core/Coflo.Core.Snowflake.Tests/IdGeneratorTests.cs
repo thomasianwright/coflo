@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Globalization;
 using Coflo.Core.Snowflake.Generators;
 using FluentAssertions;
 using FluentAssertions.Extensions;
@@ -15,11 +16,13 @@ public class IdGeneratorTests
     private readonly ITestOutputHelper _testOutputHelper;
     private readonly IdGenerator _idGenerator;
     private readonly FakeClock _fakeClock;
+    private readonly DateTimeFormatInfo _dateTimeFormat;
 
     public IdGeneratorTests(ITestOutputHelper testOutputHelper)
     {
         _testOutputHelper = testOutputHelper;
-        _fakeClock = new FakeClock(Instant.FromDateTimeUtc(DateTime.Parse("14/04/2023 00:00:00").AsUtc()));
+        _dateTimeFormat = new CultureInfo("en-GB").DateTimeFormat;
+        _fakeClock = new FakeClock(Instant.FromDateTimeUtc(DateTime.Parse("14/04/2023 00:00:00", _dateTimeFormat).AsUtc()));
 
         var inMemorySettings = new Dictionary<string, string>
         {
@@ -55,7 +58,7 @@ public class IdGeneratorTests
     public async Task Assert_NextId_Returns_Correct_Id_When_Sequence_Overflows(int sequence)
     {
         var expectedInstant =
-            Instant.FromDateTimeUtc(DateTime.Parse("14/04/2023 00:00:00").AsUtc() + TimeSpan.FromSeconds(sequence));
+            Instant.FromDateTimeUtc(DateTime.Parse("14/04/2023 00:00:00", _dateTimeFormat).AsUtc() + TimeSpan.FromSeconds(sequence));
         _fakeClock.Reset(expectedInstant);
         var result = await _idGenerator.NextId();
 
@@ -70,7 +73,7 @@ public class IdGeneratorTests
     public async Task Assert_NextId_Returns_Correct_Id_When_Sequence_Overflows_Then_Resets()
     {
         var expectedInstant =
-            Instant.FromDateTimeUtc(DateTime.Parse("14/04/2023 00:00:00").AsUtc() + TimeSpan.FromSeconds(5));
+            Instant.FromDateTimeUtc(DateTime.Parse("14/04/2023 00:00:00", _dateTimeFormat).AsUtc() + TimeSpan.FromSeconds(5));
         _fakeClock.Reset(expectedInstant);
         var result = await _idGenerator.NextId();
 
