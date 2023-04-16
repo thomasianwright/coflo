@@ -7,8 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Mediator.Abstractions" Version="2.1.1" />
       <PackageReference Include="NodaTime" Version="3.1.9" />
       <PackageReference Include="NodaTime.Serialization.JsonNet" Version="3.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Coflo.Abstractions.csproj.DotSettings" />
     </ItemGroup>
 
 </Project>
