@@ -10,4 +10,8 @@
       <ProjectReference Include="..\..\..\core\Coflo.Abstractions\Coflo.Abstractions.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="StackExchange.Redis" Version="2.6.104" />
+    </ItemGroup>
+
 </Project>

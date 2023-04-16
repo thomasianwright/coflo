@@ -4,5 +4,5 @@ namespace Coflo.Abstractions.Activities.Stores;
 
 public interface IActivityDefinitionStore
 {
-    Task<ActivityDefinition> GetActivityDefinitionAsync(long activityDefinitionId);
+    Task<ActivityDefinition?> GetActivityDefinitionAsync(long activityDefinitionId);
 }

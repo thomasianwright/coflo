@@ -11,4 +11,12 @@
       <ProjectReference Include="..\Coflo.Abstractions\Coflo.Abstractions.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="DotNetCore.CAP" Version="7.1.1" />
+      <PackageReference Include="Mediator.SourceGenerator" Version="2.1.1">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
 </Project>

@@ -4,13 +4,13 @@ namespace Coflo.Abstractions.Variables.Model;
 
 public class VariableDefinition
 {
-    public string Name { get; set; } = null!;
-    public VariableType VariableType { get; set; } = VariableType.String;
+    public string Name { get; set; }
+    public VariableType VariableType { get; set; }
     public bool IsArray { get; set; }
     public object? DefaultValue { get; private set; }
     public bool Nullable { get; set; }
     public bool Persist { get; set; } = true;
-    public VariableDefinition(string name, VariableType variableType, bool isArray, object? defaultValue)
+    public VariableDefinition(string name, VariableType variableType, bool isArray, object? defaultValue = null)
     {
         Name = name;
         VariableType = variableType;
@@ -29,7 +29,7 @@ public class VariableDefinition
     {
         switch (value)
         {
-            case null:
+            case null when Nullable:
                 DefaultValue = null;
                 return true;
             case string when VariableType == VariableType.String:
