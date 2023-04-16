@@ -5,25 +5,18 @@
 ![Discord](https://img.shields.io/discord/1096095159860600832?label=Discord&logo=Discord&style=for-the-badge)
 
 Coflo is an in development, distrobuted workflow engine.
+
 ## Roadmap
 
 - Additional browser support
 
 - Add more integrations
 
-
 ## Run Locally
-
-
-
 
 ## Features
 
-
-
-
 ## Acknowledgements
-
 
 ## Appendix
 
