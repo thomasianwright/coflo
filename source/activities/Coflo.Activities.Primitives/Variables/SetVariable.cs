@@ -12,10 +12,10 @@ public class SetVariable : Activity
     private const string Done = "Done";
     private const string Failed = "Failed";
     
-    [ActivityInput<VariableDefinition>(DisplayName = "Variable")]
+    [ActivityInput(DisplayName = "Variable")]
     public VariableDefinition Variable { get; set; }
 
-    [ActivityInput<object>(DisplayName = "Value")]
+    [ActivityInput(DisplayName = "Value")]
     public object? Value { get; set; }
 
     public SetVariable() : base("SET_VARIABLE")

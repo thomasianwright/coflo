@@ -5,10 +5,10 @@ namespace Coflo.Abstractions.Evaluation.Models;
 
 public class EvaluationContext : IEvaluationContext
 {
-    public VariableCollection Variables { get; set; }
+    public IVariableCollection Variables { get; set; }
     public string Condition { get; set; }
 
-    public EvaluationContext(VariableCollection variables, string condition)
+    public EvaluationContext(IVariableCollection variables, string condition)
     {
         Variables = variables;
         Condition = condition;

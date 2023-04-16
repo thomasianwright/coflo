@@ -5,7 +5,8 @@ namespace Coflo.Abstractions.Workflows.Services;
 
 public interface IWorkflowExecutor
 {
-    Task<long> InitializeWorkflow(long workflowDefinitionId, VariableCollection variables);
+    Task<long> InitializeWorkflow(long workflowDefinitionId, long workflowVersionId,
+        VariableCollection variables);
     
     Task ExecuteWorkflow(long workflowInstanceId);
     

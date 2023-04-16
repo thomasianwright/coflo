@@ -11,6 +11,8 @@ public class ActivityDefinition
     public string ActivityName { get; set; }
 
     public ICollection<ActivityInputMapping> InputMappings { get; set; } = new List<ActivityInputMapping>();
+    public ICollection<ActivityOutputMapping> OutputMappings { get; set; } = new List<ActivityOutputMapping>();
+
     public ICollection<IConnection> InputNode { get; set; } = new List<IConnection>();
     public ICollection<IConnection> OutputNodes { get; set; } = new List<IConnection>();
 }

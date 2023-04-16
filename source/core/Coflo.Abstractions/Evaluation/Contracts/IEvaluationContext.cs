@@ -4,6 +4,6 @@ namespace Coflo.Abstractions.Evaluation.Contracts;
 
 public interface IEvaluationContext
 {
-    VariableCollection Variables { get; set; }
+    IVariableCollection Variables { get; set; }
     public string Condition { get; set; }
 }

@@ -16,7 +16,7 @@ public class VariableDefinition
         VariableType = variableType;
         IsArray = isArray;
 
-        if (SetDefaultValue(defaultValue))
+        if (!SetDefaultValue(defaultValue))
             throw new ArgumentException($"Invalid default value for variable type {variableType}");
     }
 

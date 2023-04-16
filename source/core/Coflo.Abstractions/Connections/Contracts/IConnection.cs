@@ -2,9 +2,9 @@
 
 namespace Coflo.Abstractions.Connections.Contracts;
 
-public class IConnection
+public interface IConnection
 {
     public long ActivityId { get; set; }
     public long TargetActivityId { get; set; }
-    public string Outcome { get; set; } = OutcomeNames.Success;
+    public string Outcome { get; set; } 
 }

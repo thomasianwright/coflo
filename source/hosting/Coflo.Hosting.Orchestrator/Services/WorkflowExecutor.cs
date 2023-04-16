@@ -39,7 +39,6 @@ public class WorkflowExecutor : IWorkflowExecutor
     public async Task<long> InitializeWorkflow(long workflowDefinitionId, long workflowVersionId,
         VariableCollection variables)
     {
-        var definition = await _workflowDefinitionStore.GetWorkflowDefinitionAsync(workflowDefinitionId);
         var time = _clock.GetCurrentInstant();
 
         var instance = new WorkflowInstance
@@ -48,10 +47,9 @@ public class WorkflowExecutor : IWorkflowExecutor
             WorkflowVersionId = workflowVersionId,
             Variables = variables,
             Status = WorkflowStatus.Created,
-            CreatedAt = time
+            CreatedAt = time,
+            InstanceId = await _idGenerator.NextId()
         };
-
-        instance.InstanceId = await _idGenerator.NextId();
 
         await _workflowInstanceStore.SaveWorkflowInstanceAsync(instance);
 
@@ -85,7 +83,7 @@ public class WorkflowExecutor : IWorkflowExecutor
             await _activityDefinitionStore.GetActivityDefinitionAsync(nextActivity.ActivityDefinitionId);
 
         await _eventPublisher.PublishAsync(new StartActivityCommand(workflowInstanceId,
-            activityDefinition.ActivityDefinitionId));
+            activityDefinition.ActivityDefinitionId, workflowInstance.Variables));
 
         workflowInstance.Status = WorkflowStatus.Running;
 
@@ -114,7 +112,7 @@ public class WorkflowExecutor : IWorkflowExecutor
         }
 
         await _eventPublisher.PublishAsync(new StartActivityCommand(workflowInstance.InstanceId,
-            nextConnection.TargetActivityId));
+            nextConnection.TargetActivityId, workflowInstance.Variables));
     }
 
     public Task ActivityFailed(ActivityFailedNotification failedNotification)
@@ -127,8 +125,15 @@ public class WorkflowExecutor : IWorkflowExecutor
         throw new NotImplementedException();
     }
 
-    public Task WorkflowCompleted(long workflowInstanceId)
+    public async Task WorkflowCompleted(long workflowInstanceId)
     {
-        throw new NotImplementedException();
+        var workflowInstance = await _workflowInstanceStore.GetWorkflowInstanceAsync(workflowInstanceId);
+        
+        workflowInstance.Status = WorkflowStatus.Completed;
+        workflowInstance.CompletedAt = _clock.GetCurrentInstant();
+        
+        await _workflowInstanceStore.SaveWorkflowInstanceAsync(workflowInstance, true);
+        
+        await _eventPublisher.PublishAsync(new WorkflowCompletedNotification(workflowInstanceId));
     }
 }
