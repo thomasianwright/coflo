@@ -9,7 +9,8 @@ public class WorkflowInstance : IWorkflowInstance
     public long InstanceId { get; set; }
     public long WorkflowDefinitionId { get; set; }
     public long WorkflowVersionId { get; set; }
-    
+    public long TenantId { get; set; }
+
     public IVariableCollection Variables { get; set; }
     public List<WorkflowLogEntry> WorkflowLogs { get; set; }
     

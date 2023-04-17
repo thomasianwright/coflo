@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using Coflo.Abstractions.Activities.Models;
 using Coflo.Abstractions.Caching.Contracts;
 using Coflo.Abstractions.Workflows.Models;
 using StackExchange.Redis;
@@ -27,17 +28,17 @@ public class RedisCacheProvider : ICacheProvider
             new RedisValue(JsonSerializer.Serialize(value, _jsonSerializerOptions)));
     }
 
-    public Task<WorkflowDefinition> Get<T>(string key)
+    public async ValueTask<T?> Get<T>(string key)
     {
-        var redisValue = _database.StringGet(new RedisKey(key));
+        var redisValue = await _database.StringGetAsync(new RedisKey(key));
         return redisValue.IsNullOrEmpty
             ? default
-            : Task.FromResult(JsonSerializer.Deserialize<T>(redisValue, _jsonSerializerOptions));
+            : JsonSerializer.Deserialize<T>(redisValue, _jsonSerializerOptions);
     }
 
-    public Task<bool> Exists(string key)
+    public async ValueTask<bool> Exists(string key)
     {
-        return _database.KeyExistsAsync(new RedisKey(key));
+        return await _database.KeyExistsAsync(new RedisKey(key));
     }
 
     public Task Delete(string key)

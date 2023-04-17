@@ -1,4 +1,5 @@
 ﻿using Coflo.Abstractions.Workflows.Commands;
+using Coflo.Abstractions.Workflows.Notifications;
 using DotNetCore.CAP;
 using Mediator;
 using Microsoft.AspNetCore.Mvc;

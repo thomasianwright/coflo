@@ -8,6 +8,7 @@ namespace Coflo.Abstractions.Workflows.Models;
 public class WorkflowDefinition : IWorkflowDefinition
 {
     public long WorkflowDefinitionId { get; set; }
+    public long TenantId { get; set; }
     public string Name { get; set; }
     public ICollection<IWorkflowDefinitionVersion> Versions { get; set; }
 }

@@ -4,8 +4,9 @@ namespace Coflo.Abstractions.Workflows.Stores;
 
 public interface IWorkflowDefinitionStore
 {
-    Task<WorkflowDefinition> GetWorkflowDefinitionAsync(long workflowDefinitionId);
-    Task<WorkflowDefinitionVersion> GetWorkflowDefinitionVersionAsync(long workflowDefinitionId, long workflowVersionId);
+    ValueTask<WorkflowDefinition?> GetWorkflowDefinitionAsync(long workflowDefinitionId);
+    ValueTask<WorkflowDefinitionVersion?> GetWorkflowDefinitionVersionAsync(long workflowDefinitionId,
+        long workflowVersionId);
     Task<IEnumerable<WorkflowDefinition>> GetWorkflowDefinitionVersionsAsync(long workflowDefinitionId);
     
     Task SaveWorkflowDefinitionAsync(WorkflowDefinition workflowDefinition);
