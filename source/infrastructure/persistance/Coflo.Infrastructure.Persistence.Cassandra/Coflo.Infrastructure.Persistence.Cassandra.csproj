@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Coflo.Infrastructure.Persistance.Cassandra</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\core\Coflo.Abstractions\Coflo.Abstractions.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="CassandraCSharpDriver" Version="3.19.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Factories\CassandraSessionFactory.cs">
+        <DependentUpon>ICassandraSessionFactory.cs</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+</Project>

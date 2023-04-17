@@ -7,8 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\activities\Coflo.Activities.Primitives\Coflo.Activities.Primitives.csproj" />
-      <ProjectReference Include="..\..\core\Coflo.Core\Coflo.Core.csproj" />
+        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+        <PackageReference Include="NodaTime.Serialization.JsonNet" Version="3.0.1"/>
     </ItemGroup>
 
 </Project>

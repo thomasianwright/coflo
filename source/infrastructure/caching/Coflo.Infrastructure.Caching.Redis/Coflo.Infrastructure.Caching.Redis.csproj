@@ -7,8 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\activities\Coflo.Activities.Primitives\Coflo.Activities.Primitives.csproj" />
-      <ProjectReference Include="..\..\core\Coflo.Core\Coflo.Core.csproj" />
+      <ProjectReference Include="..\..\..\core\Coflo.Abstractions\Coflo.Abstractions.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="StackExchange.Redis" Version="2.6.104" />
     </ItemGroup>
 
 </Project>

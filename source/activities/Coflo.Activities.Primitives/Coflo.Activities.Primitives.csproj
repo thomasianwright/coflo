@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\activities\Coflo.Activities.Primitives\Coflo.Activities.Primitives.csproj" />
       <ProjectReference Include="..\..\core\Coflo.Core\Coflo.Core.csproj" />
     </ItemGroup>
 
